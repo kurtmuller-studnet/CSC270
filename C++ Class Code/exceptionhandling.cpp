@@ -3,7 +3,7 @@
 
 int main() {
 
-    char fileName[] = "data.txt"
+    char fileName[] = "data.txt";
     std::ifstream infile(fileName);
 
     try {
