@@ -1,5 +1,7 @@
 #include <string>
 #include <iostream>
+#include <sstream>
+#include <stdio.h>
 #include "Person.h"
 
 Person::Person() {}
@@ -8,7 +10,14 @@ Person::Person (std::string personName, int personId) {
     this->id = personId;
 }
 std::string Person::getData() {
-    std::cout << this->name << " (id " << this->id << ")" << std::endl;
+    //For converting id to a string
+    std::stringstream strStream;
+    strStream << this->id;
+    std::string idStr;
+    strStream >> idStr;
+
+    std::string str = this->name + " (id " + idStr + ")";
+    return str;
 }
 std::string Person::getName() {
     return this->name;
@@ -27,22 +36,38 @@ void Person::setId(int newId) {
 Professor::Professor (std::string personName, int personId) : Person(personName, personId){}
 std::string Professor::getData() {
     std::string str;
+
+    //For converting id to a string because Moodle compiler does not allow use of std::to_string()
+    std::stringstream strStream;
+    strStream << this->id;
+    std::string idStr;
+    strStream >> idStr;
+
+    //Converting publications to a string
+    std::stringstream strStream2;
+    strStream2 << this->publications;
+    std::string publicationsStr;
+    strStream2 >> publicationsStr;
+
+    //Selects the appropriate string to return based on varibles of the object
     if (this->getRank() != "none" && this->getPublications() != 0){
-        str = this->rank + " " + this->name + " (id " + std::to_string(this->id) + ") has " + std::to_string(this->getPublications()) + " publications.\n";
+        str = this->rank + " professor " + this->name + " (id " + idStr + ") has " + publicationsStr + " publications\n";
     }
     else if (this->getRank() != "none" && this->getPublications() == 0) {
-        str = this->getRank() + " " + this->name + " (id " + std::to_string(this->id) + ").\n";
+        str = this->getRank() + " professor " + this->name + " (id " + idStr + ")\n";
     }
     else if (this->getPublications() != 0 && this->getRank() == "none") {
-        str = this->name + " (id " + std::to_string(this->id) + ") has " + std::to_string(this->getPublications()) + " publications.\n";
+        str = "professor " + this->name + " (id " + idStr + ") has " + publicationsStr + " publications\n";
     }
     else {
-        str = this->name + "(id " + std::to_string(this->id) + ")\n";
+        str = "professor " + this->name + "(id " + idStr + ")\n";
     }
     return str;
 }
-void Professor::setPublications(int newPublications) {
-    this->publications = newPublications;
+void Professor::setPublications(std::string newPublications) {   
+    int x;
+    sscanf(newPublications.c_str(), "%d", &x);   
+    this->publications = x;
 }
 void Professor::setRank(std::string newRank) {
     this->rank = newRank;
@@ -57,17 +82,25 @@ std::string Professor::getRank() {
 Student::Student (std::string personName, int personId) : Person(personName, personId){}
 std::string Student::getData() {
     std::string str;
+
+    //Converts id to a string
+    std::stringstream strStream;
+    strStream << this->id;
+    std::string tempStr;
+    strStream >> tempStr;
+
+    //Selects the appropriate string to return based on varibles of the object
     if (this->getMajor() != "none" && this->getMinor() != "none"){
-        str = this->major + " major " + this->name + " (id " + std::to_string(this->id) + ") minors in " + this->getMinor() + ".\n";
+        str = this->major + " major " + this->name + " (id " + tempStr + ") minors in " + this->getMinor() + "\n";
     }
     else if (this->getMajor() != "none" && this->getMinor() == "none") {
-        str = this->getMajor() + " major " + this->name + " (id " + std::to_string(this->id) + ").\n";
+        str = this->getMajor() + " major " + this->name + " (id " + tempStr + ")\n";
     }
     else if (this->getMinor() != "none" && this->getMajor() == "none") {
-        str = this->name + " (id " + std::to_string(this->id) + ") minors in " + this->getMinor() + ".\n";
+        str = this->name + " (id " + tempStr + ") minors in " + this->getMinor() + "\n";
     }
     else{
-        str = this->name + "(id " + std::to_string(this->id) + ")./n"; 
+        str = this->name + "(id " + tempStr + ")\n"; 
     }
     return str;
 }

@@ -21,15 +21,15 @@ class Professor: public Person {
     public:
         Professor() {}
         Professor (std::string personName, int personId);
-        void setPublications(int newPublications);
+        void setPublications(std::string newPublications);
         void setRank(std::string newRank);
         std::string getData();
         int getPublications();
         std::string getRank();
 
     private:
-        int publications = 0;
-        std::string rank = "";
+        int publications;
+        std::string rank;
 };
 
 class Student: public Person {
@@ -42,8 +42,8 @@ class Student: public Person {
         void setMajor(std::string newMajor);
         void setMinor(std::string newMinor);
     private:
-        std::string major = "" ;
-        std::string minor = "";
+        std::string major;
+        std::string minor;
 };
 #endif /*PERSON_H_*/
 
