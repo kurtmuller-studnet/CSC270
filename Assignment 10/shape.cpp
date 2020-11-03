@@ -94,11 +94,11 @@ float Circle::getradius() const {
 }
 
 float Circle::perimeter() const {	
-		return 2 * radius * PI;
+	return 2 * radius * PI;
 }
 
 float Circle::area() const {
-		return PI * radius * radius;
+	return PI * radius * radius;
 }
 
 std::string Circle::str() const {
