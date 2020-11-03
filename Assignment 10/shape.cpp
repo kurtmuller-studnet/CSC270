@@ -3,6 +3,7 @@
 #include <string>
 #include "shapes.h"
 
+// This checks to see if a variable is less than 0, which is illegal
 int Shape::checkVar(float variable) {
 	if (variable < 0) {
 		return 1;
@@ -11,15 +12,17 @@ int Shape::checkVar(float variable) {
 		return 0;
 	}
 }
+// Exception for when there is a negative side in an object
 const char * Shape::NegativeSideErr() const throw() {
 	return "\nEXCEPTION: Negative Side Exception\n";
 }
+// Execption for when there is a negative radius in an object
 const char * Shape::NegativeRadiusErr() const throw() {
 	return "\nEXCEPTION: Negative Radius Exception\n";
 }
 
-
 /*****************************/
+
 Rectangle::Rectangle(float length, float width) {
 	this->length = length;
 	this->width = width;
@@ -62,16 +65,6 @@ std::string Rectangle::str() const {
 /******************************/
 
 Square::Square(float side) : Rectangle(side, side) {
-	int sideCheck = checkVar(side);
-	/*
-	while (sideCheck == 1) {
-		std::cerr << NegativeSideErr() << std::endl;
-		std::cout << "Side is :" << side << std::endl;
-		std::cout << "Enter a new side" << std::endl;
-		std::cin >> side;
-		sideCheck = checkVar(side);
-	}
-	*/
 }
 
 std::string Square::str() const {
