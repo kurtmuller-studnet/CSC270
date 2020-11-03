@@ -93,30 +93,12 @@ float Circle::getradius() const {
 	return radius;
 }
 
-float Circle::perimeter() const {
-	float perimeter;
-	try {
-		perimeter = 2 * radius * PI;
-	}
-	catch (float radius) {
-		std::cerr << NegativeRadiusErr() << std::endl;
-		std::cerr << "Radius is: " << radius;
-		return 0;
-	}
-	return perimeter;
+float Circle::perimeter() const {	
+		return 2 * radius * PI;
 }
 
 float Circle::area() const {
-	float area;
-	try { 
-		area = PI * radius * radius;
-	}
-	catch (float radius) {
-		std::cerr << NegativeRadiusErr() << std::endl;
-		std::cerr << "Radius is: " << radius;
-		return 0;
-	}
-	return area;
+		return PI * radius * radius;
 }
 
 std::string Circle::str() const {
