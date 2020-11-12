@@ -3,3 +3,4 @@
 (display (- 5 5))
 (display (* 3 4))
 (display (/ 8 12))
+(display(sqrt (+ (* (- 3 5) (- 3 5) ) (* (- 1 7) (- 1 7) ) ) )
