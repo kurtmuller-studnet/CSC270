@@ -1,0 +1,5 @@
+(display (+ 36 30))
+(display(+ 5 -5))
+(display (- 5 5))
+(display (* 3 4))
+(display (/ 8 12))
