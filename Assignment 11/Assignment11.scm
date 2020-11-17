@@ -11,6 +11,7 @@
 
 (display "Exercise 2.2.3 Questions a to o\n")
 
+;I dont know what supposed to be done here
 (display (cons 'car 'cdr))
 (newline)
 (display (list 'this '(is silly)))
