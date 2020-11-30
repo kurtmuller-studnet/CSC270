@@ -1,6 +1,6 @@
 (define sum 
-  (lambda (list)
-    (apply + list)))
+    (lambda (list)
+        (apply + list)))
 
 
 (define (average list)
